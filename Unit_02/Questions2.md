@@ -1,7 +1,6 @@
 ## Sorular
 
-1. Kategoriler numeric dizisini olusturunuz
-2. Kurslar dizisini olusturunuz
-3. Kategoriler dizisini alfabetik olarak siralayiniz
-4. h1 etiketinin altina "5 kategoride 10 film listelenmistir" seklinde bir yazi eleyiniz
-5. Filmler listesine yeni bir film ekleyiniz
+1. Kurs aciklamasindaki bas harf haric tüm karakterleri kücük harfe ceviriniz
+2. Kurs aciklamasi icindeki ilk 30 karakterin sonuna "..." ekleyiniz
+3. Her kursun kurs adi bilgisine göre url olusturunuz
+4. "title" isminde bir sabit olusturup h1 etiketiyle "Popüler Kurslar" bilgisini sayfaya yazdiriniz.

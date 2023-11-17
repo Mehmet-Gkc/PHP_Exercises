@@ -1,7 +1,4 @@
  <?php
-
-    const title = "KURSE";
-
     $kurs1_title = "PHP Kurs";
     $kurs1_unterTitle = "Webentwicklung mit PHP";
     $kurs1_img = "php.png";
@@ -29,22 +26,7 @@
     $kurs4_datum = "01.04.2022";
     $kurs4_komentar = "80";
     $kurs4_like = "150";
-
-    $kurs1_unterTitle = ucfirst(strtolower($kurs1_unterTitle));
-    $kurs2_unterTitle = ucfirst(strtolower($kurs2_unterTitle));
-    $kurs3_unterTitle = ucfirst(strtolower($kurs3_unterTitle));
-    $kurs4_unterTitle = ucfirst(strtolower($kurs4_unterTitle));
-
-    $kurs1_unterTitle = substr($kurs1_unterTitle,0,30)."...";
-    $kurs2_unterTitle = substr($kurs2_unterTitle,0,30)."...";
-    $kurs3_unterTitle = substr($kurs3_unterTitle,0,30)."...";
-    $kurs4_unterTitle = substr($kurs4_unterTitle,0,30)."...";
-
-    $kurs1_url = str_replace([" ","ö","@"],["-","o",""],strtolower($kurs1_title));    
-    $kurs2_url = str_replace([" ","ö","@"],["-","o",""],strtolower($kurs2_title));    
-    $kurs3_url = str_replace([" ","ö","@"],["-","o",""],strtolower($kurs3_title));    
-    $kurs4_url = str_replace([" ","ö","@"],["-","o",""],strtolower($kurs4_title));    
-
+ 
  ?>
 
 <!DOCTYPE html>
@@ -57,9 +39,6 @@
 </head>
 <body>
     <div class="container my-3">
-
-        <h1 class="my-3"><?php echo title;?></h1>
-
         <div class="card mb-3">
             <div class="row">
                 <div class="col-3">
@@ -67,11 +46,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="<?php echo $kurs1_url; ?>">
-                                <?php echo $kurs1_title; ?>
-                            </a>                            
-                        </h5>
+                        <h5 class="card-title"><?php echo $kurs1_title; ?></h5>
                         <p class="card-text"><?php echo $kurs1_unterTitle; ?></p>
                         <p>
                             <span class="badge rounded-pill text-bg-primary">
@@ -94,11 +69,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <h5 class="card-title">
-                        <a href="<?php echo $kurs2_url; ?>">
-                                <?php echo $kurs2_title; ?>
-                            </a>  
-                        </h5>
+                        <h5 class="card-title"><?php echo $kurs2_title?></h5>
                         <p class="card-text"><?php echo $kurs2_unterTitle; ?></p>
                         <p>
                             <span class="badge rounded-pill text-bg-primary">
@@ -121,11 +92,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <h5 class="card-title">
-                        <a href="<?php echo $kurs3_url; ?>">
-                                <?php echo $kurs3_title; ?>
-                            </a>  
-                        </h5>
+                        <h5 class="card-title"><?php echo $kurs3_title;?></h5>
                         <p class="card-text"><?php echo $kurs3_unterTitle;?></p>
                         <p>
                             <span class="badge rounded-pill text-bg-primary">
@@ -148,11 +115,7 @@
                 </div>
                 <div class="col-9">
                     <div class="card-body">
-                        <h5 class="card-title">
-                        <a href="<?php echo $kurs4_url; ?>">
-                                <?php echo $kurs4_title; ?>
-                            </a>  
-                        </h5>
+                        <h5 class="card-title"><?php echo $kurs4_title;?></h5>
                         <p class="card-text"><?php echo $kurs4_unterTitle?></p>
                         <p>
                             <span class="badge rounded-pill text-bg-primary">
