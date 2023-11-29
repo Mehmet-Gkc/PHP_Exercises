@@ -60,4 +60,20 @@
         )
     );
 
+    $städte = array(
+        "61" => "Trabzon",
+        "27" => "Gaziantep",
+        "28" => "Giresun",
+        "29" => "Gümüshane",
+        "07" => "Antalya"
+    );
+    sort($städte);
+
+    $hobiler = array(
+        "1" => "Musik",
+        "2" => "Spor",
+        "3" => "Cinema",
+        "4" => "Lesen"
+    );
+
 ?>
