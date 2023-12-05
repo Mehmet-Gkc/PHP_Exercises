@@ -24,12 +24,12 @@
 
         <ul class="navbar-nav me-2">
 
-            <?php if(isset($_COOKIE["username"])): ?>
+            <?php if(isset($_COOKIE["auth"])): ?>
                 <li class="nav-item">
                    <a href="logout.php" class="nav-link">Logout</a>
                 </li>
                 <li class="nav-item">
-                   <a href="login.php" class="nav-link">Herzlich Willkommen, <?php echo $_COOKIE["username"];?></a>
+                   <a href="login.php" class="nav-link">Herzlich Willkommen, <?php echo $_COOKIE["auth"]["name"];?></a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">

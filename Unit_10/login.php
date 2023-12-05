@@ -7,9 +7,9 @@ if(isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    if($username == db_username && $password == db_password) {
-        setcookie("username", $username, time() + (60 * 60 * 24));
-        setcookie("auth", true, time() + (60 * 60 * 24));
+    if($username == db_user["username"] && $password == db_user["password"]) {
+        setcookie("auth[username]", db_user["username"], time() + (60 * 60 * 24));
+        setcookie("auth[name]", db_user["name"], time() + (60 * 60 * 24));
 
         header("Location: index.php"); // Burada yönlendirme islemi yaptik. Login olduktan sonra index.php sayfasina gidiyoruz
     } else {

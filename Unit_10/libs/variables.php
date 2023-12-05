@@ -1,7 +1,11 @@
 <?php
     const title = "KURSE";
-    const db_username = "Mehmet";
-    const db_password = "12345";
+   
+    const db_user = array(
+        "username" => "Mehmet",
+        "password" => "12345",
+        "name" => "Mehmet Gkc"
+    );
 
     $kategories = array(
         array(
