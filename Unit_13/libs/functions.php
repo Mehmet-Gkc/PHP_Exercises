@@ -25,7 +25,16 @@
         $sonuc = mysqli_query($baglanti, $query);
         mysqli_close($baglanti);
         return $sonuc;
-    }
+    };
+    // DELETE
+    function deleteCategory(int $id) {
+        include "ayar.php";
+
+        $query = "DELETE FROM kategories WHERE id=$id";
+        $sonuc = mysqli_query($baglanti, $query);
+        mysqli_close($baglanti);
+        return $sonuc;
+    };
     // CREATE
     function createCategory(string $kategorie) {
         include "ayar.php";
