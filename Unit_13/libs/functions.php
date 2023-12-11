@@ -1,18 +1,36 @@
 <?php
-
+    // GET 
     function getCategories() {
         include "ayar.php";
 
-        $query = "SELECT * from kategories";
+        $query = "SELECT * from kategories"; // Kategorilerin hepsini sectik.
         $sonuc = mysqli_query($baglanti, $query);
         mysqli_close($baglanti);
         return $sonuc;
     };
+    // GET
+    function getCategoryById (int $id) {
+        include "ayar.php";
 
+        $query = "SELECT * from kategories WHERE id='$id'"; // Kategorilerin icinden, parametre olarak girilen id'ye göre sectik.
+        $sonuc = mysqli_query($baglanti, $query);
+        mysqli_close($baglanti);
+        return $sonuc;
+    };
+    // UPDATE
+    function editCategory ($id, string $kategorie) {
+        include "ayar.php";
+
+        $query = "UPDATE kategories SET kategorie_name='$kategorie' WHERE id=$id";
+        $sonuc = mysqli_query($baglanti, $query);
+        mysqli_close($baglanti);
+        return $sonuc;
+    }
+    // CREATE
     function createCategory(string $kategorie) {
         include "ayar.php";
 
-        $query = "INSERT INTO kategories(kategorie_name) VALUE (?)";
+        $query = "INSERT INTO kategories(kategorie_name) VALUE (?)"; // Kategoriye, value=kategorie_name olarak icerik gönderdik.
         $stmt = mysqli_prepare($baglanti, $query);
 
         mysqli_stmt_bind_param($stmt, "s", $kategorie);
