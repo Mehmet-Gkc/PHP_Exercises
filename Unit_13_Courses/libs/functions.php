@@ -50,10 +50,23 @@
     function createCategory(string $kategorie) {
         include "ayar.php";
 
-        $query = "INSERT INTO kategories(kategorie_name) VALUE (?)"; // Kategoriye, value=kategorie_name olarak icerik gönderdik.
+        $query = "INSERT INTO kategories(kategorie_name) VALUE (?)"; // Kategoriye, value=kategorie_name olarak icerik gönderdik. MySQL'deki kolon baslilari ile ayni olmasi gerekiyor
         $stmt = mysqli_prepare($baglanti, $query);
 
         mysqli_stmt_bind_param($stmt, "s", $kategorie);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $stmt;
+    };
+
+    // CREATE
+    function createCourse(string $title, string $unterTitle, string $img, int $komment = 0, int $begeni = 0, int $urkunde = 0) {
+        include "ayar.php";
+
+        $query = "INSERT INTO kurse(title,unterTitle,img,komment,begeni,urkunde) VALUE (?,?,?,?,?,?)"; // Kurse'ye , value=title,unterTitle,img,komment,begeni,urkunde olarak icerik gönderdik. MySQL'deki kolon baslilari ile ayni olmasi gerekiyor
+        $stmt = mysqli_prepare($baglanti, $query);
+
+        mysqli_stmt_bind_param($stmt, "sssiii", $title,$unterTitle,$img,$komment,$begeni,$urkunde);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         return $stmt;
