@@ -8,27 +8,30 @@
         return $data;
     }
 
-    function kursAddition (string $title, string $unterTitle,string $img,string $datum,int $komment=0,int $like=0,bool $urkunde=true) {
+    function kursEkle(string $title,string $unterTitle,string $img,string $datum,int $komment=0,int $begeni=0, bool $urkunde=true) {
         $db = getDb();
         
-        $neu_kurs[count($kurse) + 1] = array(
+        array_push($db["kurslar"], array(
             "title" => $title,
             "unterTitle" => $unterTitle,
             "img" => $img,
             "datum" => $datum,
             "komment" => $komment,
-            "like" => $like,
+            "begeni" => $begeni,
             "urkunde" => $urkunde
-        );
-        $kurse = array_merge($kurse, $neu_kurs);
-    };
+        ));
+    
+        $myfile  = fopen("db.json","w");
+        fwrite($myfile, json_encode($db, JSON_PRETTY_PRINT));
+        fclose($myfile);
+    }
     
     
     function kursUrl($title) {
         return str_replace([" ","ö","@","."],["-","o","","-"],strtolower($title));
     }
     
-    function kursInfo ($unterTitle) {
+    function kursInfo($unterTitle) {
         if (strlen($unterTitle) > 50) {
             return substr($unterTitle,0,50)."...";
         } else {
@@ -54,8 +57,6 @@
         $data = stripslashes($data);
         $data = htmlspecialchars($data); 
         return $data;
-
-
     }
 
 ?>

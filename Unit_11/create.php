@@ -1,20 +1,21 @@
 <?php
-// Verilerimiz libs/variables.php icinde
-require "libs/variables.php";
-require "libs/functions.php";   
-
+    // Verilerimiz libs/variables.php icinde
+    require "libs/variables.php";
+    require "libs/functions.php";   
 ?>
 
 <?php
-
     if($_SERVER["REQUEST_METHOD"]=="POST") {
         $title = $_POST["title"];
         $subtitle = $_POST["subtitle"];
         $image = $_POST["image"];
         $dateAdded = $_POST["dateAdded"];
-
+        
         kursAddition($title, $subtitle, $image, $dateAdded);
-    };    
+
+        header("Location: index.php");
+    }
+?>
 
 ?>
 
