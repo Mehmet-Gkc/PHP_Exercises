@@ -3,23 +3,26 @@
     function getDb() {
         $myfile = fopen("db.json","r");
         $size = filesize("db.json");
-        $data = json_decode(fread($myfile, $size), true);
+        $data = json_decode(fread($myfile, $size), true);    
         fclose($myfile);
         return $data;
     };
 
-    function kursAddition (&$kurse, string $title, string $unterTitle,string $img,string $datum,int $komment=0,int $like=0,bool $urkunde=true) {
-    
-        $neu_kurs[count($kurse) + 1] = array(
+    function kursAddition (string $title,string $unterTitle,string $img,string $datum,int $komment=0,int $begeni=0,bool $urkunde=true) {
+        $db = getDb();
+
+        array_push($db["kurse"], array(
             "title" => $title,
             "unterTitle" => $unterTitle,
             "img" => $img,
             "datum" => $datum,
             "komment" => $komment,
-            "like" => $like,
+            "begeni" => $begeni,
             "urkunde" => $urkunde
-        );
-        $kurse = array_merge($kurse, $neu_kurs);
+        ));
+        $myfile  = fopen("db.json","w");
+        fwrite($myfile, json_encode($db, JSON_PRETTY_PRINT));
+        fclose($myfile);
     };
     
     

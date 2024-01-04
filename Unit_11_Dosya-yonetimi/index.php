@@ -11,18 +11,6 @@ if(isset($_SESSION["message"])) {
 }
 
 ?>
-<?php
-
-    if($_SERVER["REQUEST_METHOD"]=="POST") {
-        $title = $_POST["title"];
-        $subtitle = $_POST["subtitle"];
-        $image = $_POST["image"];
-        $dateAdded = $_POST["dateAdded"];
-
-        kursAddition($kurse, $title, $subtitle, $image, $dateAdded);
-    };    
-
-?>
 
 <?php include "partials/_header.php" ;?>
 <!-- 

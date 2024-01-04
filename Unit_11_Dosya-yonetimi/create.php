@@ -1,9 +1,23 @@
 <?php
-// Verilerimiz libs/variables.php icinde
-require "libs/variables.php";
-require "libs/functions.php";   
-
+    // Verilerimiz libs/variables.php icinde
+    require "libs/variables.php";
+    require "libs/functions.php";   
 ?>
+
+<?php
+    // Kurs ekleme fonksiyonunu index.php den buraya tasidik
+    if($_SERVER["REQUEST_METHOD"]=="POST") {
+        $title = $_POST["title"];
+        $subtitle = $_POST["subtitle"];
+        $image = $_POST["image"];
+        $dateAdded = $_POST["dateAdded"];
+
+        kursAddition($title, $subtitle, $image, $dateAdded);
+
+        header("Location: index.php");
+    };  
+?>
+
 <?php include "partials/_header.php" ;?>
 <!-- 
     Aramayi _navbar.php icinde yapacagiz. 

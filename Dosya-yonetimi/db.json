@@ -1,0 +1,44 @@
+{
+    "kategoriler": [
+        {
+            "id": 1,
+            "kategori_adi": "Programlama",
+            "aktif": true
+        },
+        {
+            "id": 2,
+            "kategori_adi": "Web Geli\u015ftirme",
+            "aktif": false
+        },
+        {
+            "id": 3,
+            "kategori_adi": "Veri Analizi",
+            "aktif": false
+        },
+        {
+            "id": 3,
+            "kategori_adi": "Mobil Uygulama",
+            "aktif": false
+        }
+    ],
+    "kurslar": [
+        {
+            "baslik": "Php Kursu",
+            "altBaslik": "Sifirdan ileri seviye Php ile web geli\u015ftirme kursu",
+            "resim": "php.png",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 0,
+            "begeniSayisi": 10,
+            "onay": true
+        },
+        {
+            "baslik": "React Kursu",
+            "altBaslik": "Sifirdan ileri seviye React ile web gelistirme kursu",
+            "resim": "react.png",
+            "yayinTarihi": "01.01.2023",
+            "yorumSayisi": 10,
+            "begeniSayisi": 10,
+            "onay": true
+        }
+    ]
+}

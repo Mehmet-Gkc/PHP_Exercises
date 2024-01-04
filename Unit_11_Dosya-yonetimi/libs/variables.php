@@ -34,7 +34,7 @@
             "img" => "php.png",
             "datum" => "01.01.2023",
             "komment" => 0,
-            "like" => 250,
+            "begeni" => 250,
             "urkunde" => true
         ),
         "2" => array(
@@ -43,7 +43,7 @@
             "img" => "nodejs.png",
             "datum" => "01.08.2022",
             "komment" => 50,
-            "like" => 0,
+            "begeni" => 0,
             "urkunde" => true
         ),
         "3" => array(
@@ -52,7 +52,7 @@
             "img" => "react.png",
             "datum" => "01.02.2023",
             "komment" => 190,
-            "like" => 340,
+            "begeni" => 340,
             "urkunde" => true
         ),
         "4" => array(
@@ -61,7 +61,7 @@
             "img" => "bootstrap.png",
             "datum" => "01.04.2022",
             "komment" => 0,
-            "like" => 50,
+            "begeni" => 50,
             "urkunde" => true
         )
     );
