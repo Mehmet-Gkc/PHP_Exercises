@@ -21,7 +21,7 @@
                <a href="admin-kategories.php" class="nav-link">Admin Kategories</a>
             </li>
             <li class="nav-item">
-               <a href="admin-kurse.php" class="nav-link">Admin Courses</a>
+               <a href="admin-kurse.php" class="nav-link">Admin Kurse</a>
             </li>
         </ul>
 

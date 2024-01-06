@@ -1,21 +1,41 @@
 <?php
 
 // GET Kategories
-function getCategories() {
+    function getCategories() {
     include "connection.php";
 
     $query = "SELECT * from kategories";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;
-}
+};
+
+// GET Kurse
+function getCourses() {
+    include "connection.php";
+
+    $query = "SELECT * from kurse";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+};
 
     function getDb() {
-        $myfile = fopen("db.json","r");
-        $size = filesize("db.json");
-        $data = json_decode(fread($myfile, $size), true);    
-        fclose($myfile);
-        return $data;
+    $myfile = fopen("db.json","r");
+    $size = filesize("db.json");
+    $data = json_decode(fread($myfile, $size), true);    
+    fclose($myfile);
+    return $data;
+    };
+
+// GET Kategorie bei ID
+    function getCategoryById(int $id) {
+    include "connection.php";
+    
+    $query = "SELECT * from kategories WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
     };
 
 // CREATE Kategorie
@@ -31,6 +51,26 @@ function getCategories() {
 
     return $stmt;
 };
+
+// EDIT Kategorie
+    function editCategory(int $id, string $category) {
+    include "connection.php";
+
+    $query = "UPDATE kategories SET kategorie_name='$category' WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+};
+
+// DELETE Kategorie
+    function deleteCategory(int $id) {
+    include 'connection.php';
+
+    $query = "DELETE FROM kategories WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+}
 
     function kursAddition (string $title,string $unterTitle,string $img,string $datum,int $komment=0,int $begeni=0,bool $urkunde=true) {
         $db = getDb();
