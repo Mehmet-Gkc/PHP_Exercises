@@ -38,6 +38,16 @@ function getCourses() {
     return $sonuc;
     };
 
+// GET Kurs bei ID
+    function getCourseById(int $id) {
+    include "connection.php";
+    
+    $query = "SELECT * from kurse WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+    };
+
 // CREATE Kategorie
     function createCategory(string $kategori) {
     include "connection.php";
@@ -52,11 +62,35 @@ function getCourses() {
     return $stmt;
 };
 
+// CREATE Kurs
+    function createCourse(string $title, string $unterTitle, string $img, int $komment=0, int $begeni=0, int $urkunde=0) {
+    include "connection.php";
+
+    $query = "INSERT INTO kurse(title, unterTitle, img, komment, begeni, urkunde) VALUES (?,?,?,?,?,?)";
+    $stmt = mysqli_prepare($baglanti,$query);
+
+    mysqli_stmt_bind_param($stmt, 'sssiii', $title, $unterTitle, $img, $komment, $begeni, $urkunde);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $stmt;
+};
+
 // EDIT Kategorie
     function editCategory(int $id, string $category) {
     include "connection.php";
 
     $query = "UPDATE kategories SET kategorie_name='$category' WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+};
+
+// EDIT Kurs
+    function editCourse(int $id, string $title, string $unterTitle, string $img, int $urkunde) {
+    include "connection.php";
+
+    $query = "UPDATE kurse SET title='$title', unterTitle='$unterTitle', img='$img', urkunde='$urkunde' WHERE id=$id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;
