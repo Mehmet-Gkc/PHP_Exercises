@@ -32,10 +32,11 @@
             $unterTitle = safe_html($_POST["unterTitle"]);
         };
 
-        if(empty($_POST["img"])) {
-            $imgErr = "Man muss einen Image schreiben.";
+        if(empty($_FILES["imageFile"]["name"])) {
+            $img = $selectedCourse["img"];
         } else {
-            $img = safe_html($_POST["img"]);
+            uploadImage($_FILES["imageFile"]);
+            $img = $_FILES["imageFile"]["name"];
         }
 
         $urkunde = $_POST["urkunde"] == "on" ? 1 : 0;
@@ -56,7 +57,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title">Title</label>
                         <input type="text" name="title" class="form-control" value="<?php echo $selectedCourse["title"];?>">
@@ -67,11 +68,20 @@
                         <textarea name="unterTitle" class="form-control"><?php echo $selectedCourse["unterTitle"];?></textarea>
                         <div class="text-danger"><?php echo $unterTitleErr; ?></div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="img">Image</label>
                         <textarea name="img" class="form-control"><?php echo $selectedCourse["img"];?></textarea>
                         <div class="text-danger"><?php echo $imgErr; ?></div>
-                    </div>
+                    </div> -->
+                    <div>
+                       <div class="input-group mb-3">
+                            <input type="file" name="imageFile" id="imageFile" class="form-control">
+                            <label for="imageFile" class="input-group-text">Hochladen</label>
+                        </div>
+                        <div class="text-danger"><?php echo $imgErr; ?></div>
+                        <img src="img/<?php echo $selectedCourse["img"];?>" style="width:150px" alt="">  
+                    </div>                   
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="urkunde" name="urkunde" 
                             <?php echo $selectedCourse["urkunde"]?"checked":""?>>

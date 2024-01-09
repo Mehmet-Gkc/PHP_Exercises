@@ -104,7 +104,19 @@ function getCourses() {
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;
-}
+};
+
+// UPLOAD FILE
+    function uploadImage(array $file) {
+    if(isset($file)) {
+        $dest_path = "./img/";
+        $filename = $file["name"];
+        $fileSourcePath = $file["tmp_name"];
+        $fileDestPath = $dest_path.$filename;
+
+        move_uploaded_file($fileSourcePath,$fileDestPath);
+    }
+};
 
     function kursAddition (string $title,string $unterTitle,string $img,string $datum,int $komment=0,int $begeni=0,bool $urkunde=true) {
         $db = getDb();

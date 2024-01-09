@@ -26,10 +26,21 @@
             $unterTitle = safe_html($_POST["unterTitle"]);
         };
 
+        /*
+        Burada resmi sadece isim olarak gönderiyoruz.
         if(empty($_POST["img"])) {
             $imgErr = "Man muss einen Image schreiben.";
         } else {
             $img = safe_html($_POST["img"]);
+        }
+        */
+
+        // Burada resmi dosya olarak gönderiyoruz.
+        if(empty($_FILES["imageFile"]["name"])) {
+            $imgErr = "Image auswählen.";
+        } else {
+            uploadImage($_FILES["imageFile"]);
+            $img = $_FILES["imageFile"]["name"];
         }
 
         if(empty($titleErr) && empty($unterTitleErr) && empty($imgErr)) {
@@ -48,7 +59,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card card-body">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title">Title</label>
                         <input type="text" name="title" class="form-control" value="<?php echo $title;?>">
@@ -59,11 +70,12 @@
                         <textarea name="unterTitle" class="form-control"><?php echo $unterTitle;?></textarea>
                         <div class="text-danger"><?php echo $unterTitleErr; ?></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="img">Image</label>
-                        <textarea name="img" class="form-control"><?php echo $img;?></textarea>
-                        <div class="text-danger"><?php echo $imgErr; ?></div>
+                    <div class="input-group mb-3">
+                        <input type="file" name="imageFile" id="imageFile" class="form-control">
+                        <label for="imageFile" class="input-group-text">Hochladen</label>
                     </div>
+                    <div class="text-danger"><?php echo $imgErr; ?></div>
+
                     <button type="submit" class="btn btn-primary">Speichern</button>
                 </form>
            </div>
