@@ -11,10 +11,12 @@
 };
 
 // GET Kurse
-function getCourses() {
+    function getCourses() {
     include "connection.php";
 
-    $query = "SELECT * from kurse";
+    // $query = "SELECT * from kurse";
+    // Yukaridaki $query yi asagidaki gibi güncelledik. kurse'yi k ve kategories'i c olarak kisalttik. MySQL ile kurse ve kategories id lerini eslestirdik. O eslesmeye göre verileri aliyoruz. 
+    $query = "SELECT k.id,k.title,k.img,k.urkunde,c.kategorie_name from kurse k inner join kategories c on k.id=c.id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;

@@ -20,9 +20,9 @@
                     <th style="width:50px;">Id</th>
                     <th style="width:120px;">Image</th>
                     <th>Title</th>
-                    <th>Urkunde</th>
+                    <th style="width:200px;">Kategorie</th>
+                    <th style="width:50px;">Urkunde</th>
                     <th style="width:130px;"></th>
-
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,9 @@
                     <tr>
                         <td><?php echo $course["id"]?></td>
                         <td><img class="img-fluid" src="img/<?php echo $course["img"] ?>" alt=""></td>
-                        <td><?php echo $course["title"]?></td>                          
+                        <td><?php echo $course["title"]?></td>    
+                        <td><?php echo $course["kategorie_name"]?></td>                          
+
                         <td style="width:50px;">
                             <?php if ($course["urkunde"]): ?>
                                 <i class="fas fa-check"></i>
