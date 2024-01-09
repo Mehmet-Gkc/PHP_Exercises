@@ -16,7 +16,7 @@
 
     // $query = "SELECT * from kurse";
     // Yukaridaki $query yi asagidaki gibi güncelledik. kurse'yi k ve kategories'i c olarak kisalttik. MySQL ile kurse ve kategories id lerini eslestirdik. O eslesmeye göre verileri aliyoruz. 
-    $query = "SELECT k.id,k.title,k.img,k.urkunde,c.kategorie_name from kurse k inner join kategories c on k.id=c.id";
+    $query = "SELECT k.id,k.title,k.img,k.urkunde,c.kategorie_name from kurse k inner join kategories c on k.kategorie_id=c.id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;
@@ -65,13 +65,13 @@
 };
 
 // CREATE Kurs
-    function createCourse(string $title, string $unterTitle, string $img, int $komment=0, int $begeni=0, int $urkunde=0) {
+    function createCourse(string $title, string $unterTitle, string $img,int $kategorie_id, int $komment=0, int $begeni=0, int $urkunde=0) {
     include "connection.php";
 
-    $query = "INSERT INTO kurse(title, unterTitle, img, komment, begeni, urkunde) VALUES (?,?,?,?,?,?)";
+    $query = "INSERT INTO kurse(title,unterTitle,img,kategorie_id,komment,begeni,urkunde) VALUES (?,?,?,?,?,?,?)";
     $stmt = mysqli_prepare($baglanti,$query);
 
-    mysqli_stmt_bind_param($stmt, 'sssiii', $title, $unterTitle, $img, $komment, $begeni, $urkunde);
+    mysqli_stmt_bind_param($stmt, 'sssiiii', $title, $unterTitle, $img, $kategorie_id, $komment, $begeni, $urkunde);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -89,10 +89,10 @@
 };
 
 // EDIT Kurs
-    function editCourse(int $id, string $title, string $unterTitle, string $img, int $urkunde) {
+    function editCourse(int $id, string $title, string $unterTitle, string $img,int $kategorie_id, int $urkunde) {
     include "connection.php";
 
-    $query = "UPDATE kurse SET title='$title', unterTitle='$unterTitle', img='$img', urkunde='$urkunde' WHERE id=$id";
+    $query = "UPDATE kurse SET title='$title', unterTitle='$unterTitle', img='$img',kategorie_id='$kategorie_id', urkunde='$urkunde' WHERE id=$id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;

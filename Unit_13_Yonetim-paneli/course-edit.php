@@ -17,6 +17,8 @@
     $title = $titleErr = "";
     $unterTitle = $unterTitleErr = "";
     $img = $imgErr = "";
+    $category = "0"; 
+    $categoryErr = "";
 
     if($_SERVER["REQUEST_METHOD"]=="POST") {
 
@@ -37,12 +39,18 @@
         } else {
             uploadImage($_FILES["imageFile"]);
             $img = $_FILES["imageFile"]["name"];
-        }
+        };
+
+        if($_POST["category"] == "0") {
+            $categoryErr = "Sie müssen eine Kategorie auswählen.!";
+        } else {
+            $category = $_POST["category"];
+        };
 
         $urkunde = $_POST["urkunde"] == "on" ? 1 : 0;
 
-        if(empty($titleErr) && empty($unterTitleErr) && empty($imgErr)) {
-            editCourse($id,$title,$unterTitle,$img,$urkunde);
+        if(empty($titleErr) && empty($unterTitleErr) && empty($imgErr) && empty($categoryErr)) {
+            editCourse($id,$title,$unterTitle,$img,$category,$urkunde);
             $_SESSION["message"] = $title." ist aktualisiert.";
             $_SESSION["type"] = "success";
             header('Location: admin-kurse.php');
@@ -80,7 +88,21 @@
                         </div>
                         <div class="text-danger"><?php echo $imgErr; ?></div>
                         <img src="img/<?php echo $selectedCourse["img"];?>" style="width:150px" alt="">  
-                    </div>                   
+                    </div>   
+                    
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategorie</label>
+                        <select name="category" id="category" class="form-select">
+                            <option value="0" selected>Auswählen</option>
+                            <?php foreach(getCategories() as $c): ?>
+                                <option value="<?php echo $c["id"] ;?>"><?php echo $c["kategorie_name"]; ?></option>
+                            <?php endforeach; ?>                            
+                        </select>
+                        <div class="text-danger"><?php echo $categoryErr; ?></div>
+                        <script type="text/javascript">
+                            document.getElementById("category").value = "<?php echo $selectedCourse["kategorie_id"];?>";
+                        </script>
+                    </div>
 
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="urkunde" name="urkunde" 
