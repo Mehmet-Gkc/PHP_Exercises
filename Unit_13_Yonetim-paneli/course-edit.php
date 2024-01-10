@@ -76,7 +76,9 @@
                         <textarea name="unterTitle" class="form-control"><?php echo $selectedCourse["unterTitle"];?></textarea>
                         <div class="text-danger"><?php echo $unterTitleErr; ?></div>
                     </div>
-                    <!-- <div class="mb-3">
+                    <!--
+                        Burada image i dosya adi olarak aliyoruz. Asagida dosya olarak ekliyoruz.
+                        <div class="mb-3">
                         <label for="img">Image</label>
                         <textarea name="img" class="form-control"><?php echo $selectedCourse["img"];?></textarea>
                         <div class="text-danger"><?php echo $imgErr; ?></div>

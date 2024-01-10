@@ -14,7 +14,7 @@
     function getCourses() {
     include "connection.php";
 
-    // $query = "SELECT * from kurse";
+    // $query = "SELECT * from kurse"; // Bu tüm kurslari ceker MySQL den
     // Yukaridaki $query yi asagidaki gibi güncelledik. kurse'yi k ve kategories'i c olarak kisalttik. MySQL ile kurse ve kategories id lerini eslestirdik. O eslesmeye göre verileri aliyoruz. 
     $query = "SELECT k.id,k.title,k.img,k.urkunde,c.kategorie_name from kurse k inner join kategories c on k.kategorie_id=c.id";
     $sonuc = mysqli_query($baglanti,$query);
@@ -65,6 +65,7 @@
 };
 
 // CREATE Kurs
+    // int kategorie_id referans olarak eklenen id
     function createCourse(string $title, string $unterTitle, string $img,int $kategorie_id, int $komment=0, int $begeni=0, int $urkunde=0) {
     include "connection.php";
 
@@ -103,6 +104,16 @@
     include 'connection.php';
 
     $query = "DELETE FROM kategories WHERE id=$id";
+    $sonuc = mysqli_query($baglanti,$query);
+    mysqli_close($baglanti);
+    return $sonuc;
+};
+
+// DELETE Kurs
+function deleteCourse(int $id) {
+    include 'connection.php';
+
+    $query = "DELETE FROM kurse WHERE id=$id";
     $sonuc = mysqli_query($baglanti,$query);
     mysqli_close($baglanti);
     return $sonuc;
