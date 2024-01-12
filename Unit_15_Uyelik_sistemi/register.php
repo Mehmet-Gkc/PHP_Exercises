@@ -1,5 +1,5 @@
 <?php
-
+include "libs/connection.php";
 require "libs/variables.php";
 require "libs/functions.php";   
 
@@ -24,7 +24,27 @@ require "libs/functions.php";
             $usernameErr = "Benutzername sollte nur aus Zahlen, Buchstaben und Unterstrichen bestehen.";
         }
         else {
-            $username = safe_html($_POST["username"]);
+
+            $sql = "SELECT id from usersTable WHERE username=?";
+
+            if($stmt = mysqli_prepare($baglanti,$sql)) {
+                $param_username = trim($_POST["username"]);
+                mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+                if(mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) == 1) {
+                        $usernameErr = "bereits registrierter Benutzer";
+                    }  else {
+                        $username = safe_html($_POST["username"]);
+                    }
+                } else {
+                    echo mysqli_error($baglanti);
+                    echo "Fehler";
+                }
+            }
+          
         };
         // Email
         if(empty($_POST["email"])) {
@@ -33,7 +53,25 @@ require "libs/functions.php";
             $emailErr = "E-Mail ist fehlerhaft";
         } 
         else {
-            $email = safe_html($_POST["email"]);
+            $sql = "SELECT id from usersTable WHERE email=?";
+
+            if($stmt = mysqli_prepare($baglanti,$sql)) {
+                $param_email = trim($_POST["email"]);
+                mysqli_stmt_bind_param($stmt, "s", $param_email);
+
+                if(mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) == 1) {
+                        $emailErr = "bereits registrierte Email";
+                    }  else {
+                        $email = safe_html($_POST["email"]);
+                    }
+                } else {
+                    echo mysqli_error($baglanti);
+                    echo "Fehler";
+                }
+            }
         }; 
 
         // Password
@@ -51,7 +89,6 @@ require "libs/functions.php";
 
         // Register
         if(empty($usernameErr) && empty($emailErr) && empty($passwordErr) && empty($repasswordErr)) {
-            include "libs/connection.php";
             $sql = "INSERT INTO usersTable(username,email,password) VALUES (?,?,?)";
 
             if($stmt = mysqli_prepare($baglanti, $sql)) {
