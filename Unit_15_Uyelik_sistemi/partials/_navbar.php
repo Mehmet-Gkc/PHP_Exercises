@@ -17,22 +17,24 @@
             <li class="nav-item">
                <a href="index.php" class="nav-link active">Home</a>
             </li>
+            <?php if(isLoggedIn()): ?>
             <li class="nav-item">
                <a href="admin-kategories.php" class="nav-link">Admin Kategories</a>
             </li>
             <li class="nav-item">
                <a href="admin-kurse.php" class="nav-link">Admin Kurse</a>
             </li>
+            <?php endif; ?>
         </ul>
 
         <ul class="navbar-nav me-2">
 
-            <?php if(isset($_COOKIE["auth"])): ?>
+            <?php if(isLoggedIn()): ?>
                 <li class="nav-item">
                    <a href="logout.php" class="nav-link">Logout</a>
                 </li>
                 <li class="nav-item">
-                   <a href="login.php" class="nav-link">Herzlich Willkommen, <?php echo $_COOKIE["auth"]["name"];?></a>
+                   <a href="login.php" class="nav-link">Herzlich Willkommen, <?php echo $_SESSION["username"];?></a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">

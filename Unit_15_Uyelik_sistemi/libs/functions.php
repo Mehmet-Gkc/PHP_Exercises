@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+// is Logged in
+    function isLoggedIn() {
+        return (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true);    
+    }
+
 // GET Kategories
     function getCategories() {
     include "connection.php";
